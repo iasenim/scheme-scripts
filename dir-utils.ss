@@ -17,7 +17,7 @@
   ;;     dir4  dir5  dir6
   ;;     /      \       \
   ;;    file1    file2   file3
-  ;; (leaf-directories "dir1") will return ("dir1/dir2/dir4", "dir1/dir2/dir5", "dir1/dir3/dir6")
+  ;; (leaf-directories "dir1") will return ("dir1/dir2/dir4" "dir1/dir2/dir5" "dir1/dir3/dir6")
   
   (define leaf-directories
     (lambda (root)
