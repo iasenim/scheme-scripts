@@ -9,6 +9,8 @@
             [else (let ([kp (if (> k (/ n 2.0))
                                 (- n k)
                                 k)])
+                    ;; combination can be calculated as a product
+                    ;; (comb n k) = \prod_{i = 1}^k\frac{n + 1 - i}{i}
                     (do ([i 1 (+ i 1)] [result 1 (* result (/ (- (+ n 1) i) i))])
                         ((> i kp) result)))])))
   
