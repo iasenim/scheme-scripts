@@ -4,15 +4,16 @@
   
   (define comb
     (lambda (n k)
-      (cond [(or (= k 0) (= k n)) 1]
-            [(or (< k 0) (> k n) (< n 1)) (error "(comb n k)" "Invalid argument")]
-            [else (let ([kp (if (> k (/ n 2.0))
-                                (- n k)
-                                k)])
-                    ;; combination can be calculated as a product
-                    ;; (comb n k) = \prod_{i = 1}^k\frac{n + 1 - i}{i}
-                    (do ([i 1 (+ i 1)] [result 1 (* result (/ (- (+ n 1) i) i))])
-                        ((> i kp) result)))])))
+      (cond
+       [(or (< k 0) (> k n) (< n 1)) (error "(comb n k)" "Invalid argument")]
+       [(or (= k 0) (= k n)) 1]
+       [else (let ([kp (if (> k (/ n 2.0))
+                           (- n k)
+                           k)])
+               ;; combination can be calculated as a product
+               ;; (comb n k) = \prod_{i = 1}^k\frac{n + 1 - i}{i}
+               (do ([i 1 (+ i 1)] [result 1 (* result (/ (- (+ n 1) i) i))])
+                   ((> i kp) result)))])))
   
   (define factorial
     (lambda (n)
