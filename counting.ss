@@ -1,11 +1,17 @@
 (library (counting)
-  (export comb perm factorial)
+  (export
+   comb
+   perm
+   factorial
+   sample-with-replacement
+   sample-without-replacement)
   (import (chezscheme))
   
   (define comb
     (lambda (n k)
       (cond
-       [(or (< k 0) (> k n) (< n 1)) (error "(comb n k)" "Invalid argument")]
+       [(or (< k 0) (< n 1)) (error "(comb n k)" "Invalid argument")]
+       [(> k n) 0]
        [(or (= k 0) (= k n)) 1]
        [else (let ([kp (if (> k (/ n 2.0))
                            (- n k)
@@ -37,4 +43,11 @@
                                         result
                                         (perm-iter (- m 1) (* result m))))])
                (perm-iter n 1))))))
+
+  (define sample-with-replacement
+    (lambda (n k)
+      (expt n k)))
+
+  (define sample-without-replacement perm)
+  
   )
