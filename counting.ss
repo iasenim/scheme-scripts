@@ -4,7 +4,9 @@
    perm
    factorial
    sample-with-replacement
-   sample-without-replacement)
+   sample-without-replacement
+   hgeom
+   binomial)
   (import (chezscheme))
   
   (define comb
@@ -49,5 +51,27 @@
       (expt n k)))
 
   (define sample-without-replacement perm)
+  
+  (define binomial
+    (lambda (n p)
+      (lambda (k)
+        (cond
+         [(or (> k n) (< k 0)) 0]
+         [else  (* (comb n k)
+                   (expt p k)
+                   (expt (- 1 p)
+                         (- n k)))]))))
+  
+  (define hgeom
+    (lambda (w b n)
+      (lambda (k)
+        (cond
+         [(or
+           (or (< k 0) (> k w))
+           (or (< (- n k) 0) (> (- n k) b))) 0]
+         [else (/
+                (* (comb w k)
+                   (comb b (- n k)))
+                (comb (+ w b) n))]))))
   
   )
