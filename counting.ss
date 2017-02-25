@@ -73,5 +73,5 @@
                 (* (comb w k)
                    (comb b (- n k)))
                 (comb (+ w b) n))]))))
-  
+
   )
